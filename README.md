@@ -26,3 +26,4 @@ References:
 * https://www.browserstack.com/guide/run-selenium-tests-in-docker
 * https://www.selenium.dev/documentation/
 * https://github.com/SeleniumHQ/docker-selenium
+* https://github.com/renatoathaydes/spock-reports
