@@ -1,0 +1,52 @@
+version: "3.4"
+
+services:
+  web:
+    image: nginx
+    ports:
+      - "8080:80"
+    environment:
+      - NGINX_PORT=80
+  chrome:
+    image: selenium/node-chrome:4.2.1-20220531
+    shm_size: 2gb
+    ports:
+      - "5900:5900"
+      - "7900:7900"
+    depends_on:
+      - selenium-hub
+    environment:
+      SE_EVENT_BUS_HOST: selenium-hub
+      SE_EVENT_BUS_PUBLISH_PORT: 4442
+      SE_EVENT_BUS_SUBSCRIBE_PORT: 4443
+      VNC_PORT: 5900
+      VNC_NO_PASSWORD: 'true'
+      VNC_VIEW_ONLY: 'true'
+
+#  edge:
+#    image: selenium/node-edge:4.2.1-20220531
+#    shm_size: 2gb
+#    depends_on:
+#      - selenium-hub
+#    environment:
+#      - SE_EVENT_BUS_HOST=selenium-hub
+#      - SE_EVENT_BUS_PUBLISH_PORT=4442
+#      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
+
+#  firefox:
+#    image: selenium/node-firefox:4.2.1-20220531
+#    shm_size: 2gb
+#    depends_on:
+#      - selenium-hub
+#    environment:
+#      - SE_EVENT_BUS_HOST=selenium-hub
+#      - SE_EVENT_BUS_PUBLISH_PORT=4442
+#      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
+
+  selenium-hub:
+    image: selenium/hub:4.2.1-20220531
+    container_name: selenium-hub
+    ports:
+      - "4442:4442"
+      - "4443:4443"
+      - "4444:4444"
