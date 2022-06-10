@@ -42,6 +42,7 @@ class NginxSpec extends GebSpec {
         quit()
     }
 
+
     def cleanupSpec(){
         log.info('Stopping the feature ...')
     }
